@@ -4,50 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SkyScript</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
 </head>
 <body>
-    <header>
-        <h1>SkyScript</h1>
-        <form id="search-form">
-            <input type="text" id="search-input" placeholder="Enter location...">
-            <button type="submit" id="search-button">Search</button>
-        </form>
-        <label>
-            <input type="checkbox" id="unit-toggle"> Imperial Units
-        </label>
-        <button id="refresh-button">Refresh</button>
-
-    </header>
-
-    <nav>
-        <ul>
-            <li><a href="#today">Today</a></li>
-            <li><a href="#hourly">Hourly</a></li>
-            <li><a href="#daily">Daily</a></li>
-        </ul>
-    </nav>
+    <div class="fixed-top">
+        <header>
+            <h1>SkyScript</h1>
+            <form id="search-form">
+                <input type="text" id="search-input" placeholder="Enter location...">
+                <button type="submit" id="search-button">Search</button>
+            </form>
+            <label>
+                <input type="checkbox" id="unit-toggle"> Imperial Units
+            </label>
+            <button id="refresh-button">Refresh</button>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="#today" data-nav-link>Today</a></li>
+                <li><a href="#hourly" data-nav-link>Hourly</a></li>
+                <li><a href="#daily" data-nav-link>Daily</a></li>
+            </ul>
+        </nav>
+    </div>
 
     <main>
         <section id="location-info">
-            <h2>Location Information</h2>
-            <p><strong>Address:</strong> <span id="address"></span></p>
-            <p><strong>Coordinates:</strong> <span id="coordinates"></span></p>
-            <p><strong>Timezone:</strong> <span id="timezone"></span></p>
-            <p><strong>Description:</strong> <span id="description"></span></p>
+            <div>
+                <h2>Location Information</h2>
+                <p><strong>Address:</strong> <span id="address"></span></p>
+                <p><strong>Timezone:</strong> <span id="timezone"></span></p>
+                <p><strong>Description:</strong> <span id="description"></span></p>
+            </div>
+            
         </section>
 
+        <section>
+            <div class="current-weather"></div>
+        </section>
+        
         <section id="today">
-            <h2>Today</h2>
+            <div class="today-weather"></div>
             <!-- Content for Today section -->
         </section>
 
         <section id="hourly">
-            <h2>Hourly</h2>
+            <div class="hourly-weather">
+
+            </div>
             <!-- Content for Hourly section -->
         </section>
 
         <section id="daily">
             <h2>Daily</h2>
+            <div class="daily"></div>
             <!-- Content for Daily section -->
         </section>
     </main>
