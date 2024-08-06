@@ -1,98 +1,153 @@
-body {
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(to right, #00b4db, #0083b0);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+/* Reset và thiết lập cơ bản */
+* {
   margin: 0;
-  color: #333;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.container {
-  background: rgba(255, 255, 255, 0.8);
-  padding: 2em;
-  border-radius: 30px;
-  width: 100%;
-  max-width: 420px;
-  margin: 1em;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f4f7f9;
+}
+
+/* Header */
+header {
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-  text-align: center;
-  margin-bottom: 1em;
-  color: #0083b0;
+  font-size: 2.5rem;
+  font-weight: 700;
 }
 
-.search {
+header div {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  gap: 10px;
 }
 
-input.search-bar {
+input[type="text"] {
+  padding: 0.5rem 1rem;
   border: none;
-  outline: none;
-  padding: 0.5em 1em;
-  border-radius: 24px;
-  background: #fff;
-  color: #333;
-  font-family: inherit;
-  font-size: 120%;
-  width: calc(100% - 100px);
+  border-radius: 20px;
+  font-size: 1rem;
+  width: 250px;
 }
 
 button {
-  margin: 0.5em;
-  border-radius: 50%;
+  padding: 0.5rem 1.5rem;
   border: none;
-  height: 46px;
-  width: 46px;
-  outline: none;
-  background: #0083b0;
+  border-radius: 20px;
+  background-color: #4CAF50;
   color: white;
+  font-size: 1rem;
   cursor: pointer;
-  transition: 0.2s ease-in-out;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background: #00b4db;
+  background-color: #45a049;
 }
 
-.weather.loading {
-  visibility: hidden;
-  max-height: 20px;
-  position: relative;
+/* Navigation */
+nav {
+  background-color: white;
+  padding: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.weather.loading:after {
-  visibility: visible;
-  content: "Loading...";
-  color: #0083b0;
-  position: absolute;
-  top: 0;
-  left: 20px;
-}
-
-.weather {
-  padding: 1em;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.6);
-  margin-top: 1em;
-}
-
-.weather h2 {
-  margin-top: 0;
-  color: #0083b0;
-}
-
-.flex {
+nav ul {
+  list-style-type: none;
   display: flex;
-  align-items: center;
+  justify-content: center;
+  gap: 2rem;
 }
 
-.description {
-  text-transform: capitalize;
-  margin-left: 8px;
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover {
+  background-color: #6e8efb;
+  color: white;
+}
+
+/* Main content */
+main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+section {
+  background-color: white;
+  border-radius: 10px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #6e8efb;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+/* Location Information Section */
+#location-info {
+  background: linear-gradient(135deg, #f6d365, #fda085);
+  color: #333;
+}
+
+#location-info h2 {
+  color: #333;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+  padding-bottom: 0.5rem;
+}
+
+#location-info p {
+  margin-bottom: 0.5rem;
+}
+
+#location-info strong {
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+#location-info span {
+  font-weight: 400;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  header {
+      flex-direction: column;
+      gap: 1rem;
+  }
+
+  header div {
+      width: 100%;
+  }
+
+  input[type="text"] {
+      width: 100%;
+  }
+
+  nav ul {
+      flex-direction: column;
+      align-items: center;
+  }
 }

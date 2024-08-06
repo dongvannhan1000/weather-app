@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/js/index.js',
+  entry: './src/js/app.js',
   output: {
     filename: 'index.js', // Add content hash for cache busting
     path: path.resolve(__dirname, 'dist'),
