@@ -122,7 +122,6 @@ function updateTodayWeather(todayWeather) {
   `;
 }
 
-
 function updateHourlyWeather(hourlyData) {
   const hourlyWeatherDiv = document.querySelector('.hourly-weather');
   let currentDayIndex = 0;
@@ -208,8 +207,78 @@ function updateHourlyWeather(hourlyData) {
   updateDayDisplay();
 }
 
-function updateDailyWeather(dailyWeather) {
-  // Implement updating DOM for daily weather
+function updateDailyWeather(dailyData) {
+  const dailyWeatherDiv = document.querySelector('.daily-weather');
+  
+  dailyWeatherDiv.innerHTML = `
+    <h2>Daily Forecast</h2>
+    <div class="weather-card">
+      <div class="daily-scroll-container">
+        ${dailyData.map(day => `
+          <div class="daily-item">
+            <div class="weather-date">${formatDate(day.date)}</div>
+            <div class="weather-icon-large">
+              <i class="wi ${getWeatherIconClass(day.icon)}"></i>
+            </div>
+            <div class="weather-item">
+              <span class="weather-value">${day.temp}°C</span>
+              <span class="weather-label">Avg Temp</span>
+            </div>
+            
+            <div class="daily-details">
+              <div class="weather-item">
+                <i class="wi wi-sunrise"></i>
+                <span class="weather-value">${day.sunrise}</span>
+                <span class="weather-label">Sunrise</span>
+              </div>
+              <div class="weather-item">
+                <i class="wi wi-sunset"></i>
+                <span class="weather-value">${day.sunset}</span>
+                <span class="weather-label">Sunset</span>
+              </div>
+              <div class="weather-item">
+                <i class="wi wi-thermometer"></i>
+                <span class="weather-value">${day.highTemp}°C</span>
+                <span class="weather-label">Highest</span>
+              </div>
+              <div class="weather-item">
+                <i class="wi wi-thermometer-exterior"></i>
+                <span class="weather-value">${day.lowTemp}°C</span>
+                <span class="weather-label">Lowest</span>
+              </div>
+              <div class="weather-item">
+                
+                <span class="weather-value">${day.feelsLikeMin}°C - ${day.feelsLikeMax}°C</span>
+                <span class="weather-label">Feels Like</span>
+              </div>
+              <div class="weather-item">
+                <i class="wi wi-day-sunny"></i>
+                <span class="weather-value">${day.uvIndex}</span>
+                <span class="weather-label">UV Index</span>
+              </div>
+              <div class="weather-item">
+                <i class="wi wi-cloudy"></i>
+                <span class="weather-value">${day.cloudCover}%</span>
+                <span class="weather-label">Cloud Cover</span>
+              </div>
+              <div class="weather-item">
+                <i class="wi wi-raindrops"></i>
+                <span class="weather-value">${day.precipprob}%</span>
+                <span class="weather-label">Chance of Rain</span>
+              </div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const options = { weekday: 'short', month: 'short', day: 'numeric' };
+  return date.toLocaleDateString('en-US', options);
 }
 
 function getWeatherIconClass(iconCode) {

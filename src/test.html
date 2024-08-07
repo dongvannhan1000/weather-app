@@ -1,0 +1,53 @@
+<div class="daily-item">
+  <div class="weather-date">${formatDate(day.date)}</div>
+  <div class="weather-icon-large">
+    <i class="wi ${getWeatherIconClass(day.icon)}"></i>
+  </div>
+  <div class="weather-item">
+    <span class="weather-value">${day.temp}°C</span>
+    <span class="weather-label">Avg Temp</span>
+  </div>
+  
+  <div class="daily-details">
+    <div class="weather-item">
+      <i class="wi wi-sunrise"></i>
+      <span class="weather-value">${day.sunrise}</span>
+      <span class="weather-label">Sunrise</span>
+    </div>
+    <div class="weather-item">
+      <i class="wi wi-sunset"></i>
+      <span class="weather-value">${day.sunset}</span>
+      <span class="weather-label">Sunset</span>
+    </div>
+    <div class="weather-item">
+      <i class="wi wi-thermometer"></i>
+      <span class="weather-value">${todayWeather.highTemp}°C</span>
+      <span class="weather-label">Highest</span>
+    </div>
+    <div class="weather-item">
+      <i class="wi wi-thermometer-exterior"></i>
+      <span class="weather-value">${todayWeather.lowTemp}°C</span>
+      <span class="weather-label">Lowest</span>
+    </div>
+    <div class="weather-item">
+      <i class="wi wi-thermometer-exterior"></i>
+      <span class="weather-value">${day.feelsLikeMin}°C - ${day.feelsLikeMax}°C</span>
+      <span class="weather-label">Feels Like</span>
+    </div>
+    <div class="weather-item">
+      <i class="wi wi-day-sunny"></i>
+      <span class="weather-value">${day.uvIndex}</span>
+      <span class="weather-label">UV Index</span>
+    </div>
+    <div class="weather-item">
+      <i class="wi wi-cloudy"></i>
+      <span class="weather-value">${day.cloudCover}%</span>
+      <span class="weather-label">Cloud Cover</span>
+    </div>
+    <div class="weather-item">
+      <i class="wi wi-raindrops"></i>
+      <span class="weather-value">${hour.precipprob}%</span>
+      <span class="weather-label">Chance of Rain</span>
+    </div>
+  </div>
+</div>

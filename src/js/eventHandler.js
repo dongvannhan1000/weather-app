@@ -27,7 +27,8 @@ async function handleSearch(event) {
 }
 
 function handleUnitToggle(event) {
-  const units = event.target.checked ? 'imperial' : 'metric';
+  const isImperial = event.target.checked;
+  const units = isImperial ? 'imperial' : 'metric';
   weatherService.setUnits(units);
   // Refresh the display with new units
   handleRefresh();

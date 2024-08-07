@@ -42,10 +42,12 @@ class WeatherService {
   setUnits(units) {
     // Implement logic to change units (metric/imperial)
     // This might involve re-formatting the cached data or fetching new data
+    currentUnits = units;
   }
 
   // Add more methods as needed, for example:
   // getHourlyForecast(), getDailyForecast(), etc.
 }
 
+let currentUnits = 'metric';
 export const weatherService = new WeatherService();

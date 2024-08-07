@@ -65,6 +65,19 @@ function formatHourlyWeather(data) {
 }
 
 function formatDailyWeather(data) {
-  // Implement formatting for daily weather
-  // Return an array of objects with daily weather details
+  const days = data.days
+  return days.map(day => ({
+    date: day.datetime,
+    sunrise: day.sunrise,
+    sunset: day.sunset,
+    highTemp: day.tempmax,
+    lowTemp: day.tempmin,
+    feelsLikeMax: day.feelslikemax,
+    feelsLikeMin: day.feelslikemin,
+    temp: day.temp,
+    uvIndex: day.uvindex,
+    cloudCover: day.cloudcover,
+    precipprob: day.precipprob,
+    icon: day.icon
+  }));
 }
