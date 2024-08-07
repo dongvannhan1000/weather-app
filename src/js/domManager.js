@@ -1,3 +1,5 @@
+import { currentUnits } from "./weatherService";
+
 export function updateWeatherDisplay(weatherData) {
   updateLocationInfo(weatherData.location);
   updateCurrentWeather(weatherData.current);
@@ -21,7 +23,7 @@ function updateCurrentWeather(currentWeather) {
     <h2>Current weather</h2>
     <div class="weather-card">
       <div class="weather-main">
-        <div class="weather-temp">${currentWeather.temp}°C</div>
+        <div class="weather-temp">${currentWeather.temp} ${currentUnits === 'metric' ? '°C' : '°F'}</div>
         <div class="weather-icon-large">
           <i class="wi ${getWeatherIconClass(currentWeather.icon)}"></i>
         </div>
@@ -33,7 +35,7 @@ function updateCurrentWeather(currentWeather) {
       <div class="weather-details">
         <div class="weather-item">
           <i class="wi wi-thermometer"></i>
-          <span class="weather-value">${currentWeather.feelslike}°C</span>
+          <span class="weather-value">${currentWeather.feelslike} ${currentUnits === 'metric' ? '°C' : '°F'}</span>
           <span class="weather-label">Feels like</span>
         </div>
         <div class="weather-item">
@@ -43,7 +45,7 @@ function updateCurrentWeather(currentWeather) {
         </div>
         <div class="weather-item">
           <i class="wi wi-strong-wind"></i>
-          <span class="weather-value">${currentWeather.windspeed} km/h</span>
+          <span class="weather-value">${currentWeather.windspeed} ${currentUnits === 'metric' ? 'km/h' : 'mph'}</span>
           <span class="weather-label">Wind Speed</span>
         </div>
         <div class="weather-item">
@@ -58,7 +60,7 @@ function updateCurrentWeather(currentWeather) {
         </div>
         <div class="weather-item">
           <i class="wi wi-fog"></i>
-          <span class="weather-value">${currentWeather.visibility} km</span>
+          <span class="weather-value">${currentWeather.visibility} ${currentUnits === 'metric' ? 'km' : 'miles'}</span>
           <span class="weather-label">Visibility</span>
         </div>
       </div>
@@ -89,7 +91,7 @@ function updateTodayWeather(todayWeather) {
       <div class="today-details">
         <div class="weather-item">
           <i class="wi wi-raindrops"></i>
-          <span class="weather-value">${todayWeather.precipitation ? todayWeather.precipitation : '0'} mm</span>
+          <span class="weather-value">${todayWeather.precipitation ? todayWeather.precipitation : '0'} ${currentUnits === 'metric' ? 'mm' : 'in'}</span>
           <span class="weather-label">Precipitation</span>
         </div>
         <div class="weather-item">
@@ -98,7 +100,7 @@ function updateTodayWeather(todayWeather) {
           <span class="weather-label">UV Index</span>
         </div>
         <div class="weather-item">
-          <i class="wi wi-moon-new"></i>
+          <i class="wi ${getMoonPhaseIcon(todayWeather.moonPhase)}"></i>
           <span class="weather-value">${getMoonPhaseDescription(todayWeather.moonPhase)}</span>
           <span class="weather-label">Moon Phase</span>
         </div>
@@ -109,12 +111,12 @@ function updateTodayWeather(todayWeather) {
         </div>
         <div class="weather-item">
           <i class="wi wi-thermometer"></i>
-          <span class="weather-value">${todayWeather.highTemp}°C</span>
+          <span class="weather-value">${todayWeather.highTemp} ${currentUnits === 'metric' ? '°C' : '°F'}</span>
           <span class="weather-label">Highest</span>
         </div>
         <div class="weather-item">
           <i class="wi wi-thermometer-exterior"></i>
-          <span class="weather-value">${todayWeather.lowTemp}°C</span>
+          <span class="weather-value">${todayWeather.lowTemp} ${currentUnits === 'metric' ? '°C' : '°F'}</span>
           <span class="weather-label">Lowest</span>
         </div>
       </div>
@@ -140,7 +142,7 @@ function updateHourlyWeather(hourlyData) {
           ${dayData.hours.map(hour => `
             <div class="hourly-item">
               <div class="weather-main">
-                <div class="weather-temp">${hour.temp}°C</div>
+                <div class="weather-temp">${hour.temp} ${currentUnits === 'metric' ? '°C' : '°F'}</div>
                 <div class="weather-icon-large">
                   <i class="wi ${getWeatherIconClass(hour.icon)}"></i>
                 </div>
@@ -152,7 +154,7 @@ function updateHourlyWeather(hourlyData) {
               <div class="weather-details">
                 <div class="weather-item">
                   <i class="wi wi-thermometer"></i>
-                  <span class="weather-value">${hour.feelslike}°C</span>
+                  <span class="weather-value">${hour.feelslike} ${currentUnits === 'metric' ? '°C' : '°F'}</span>
                   <span class="weather-label">Feels like</span>
                 </div>
                 <div class="weather-item">
@@ -162,7 +164,7 @@ function updateHourlyWeather(hourlyData) {
                 </div>
                 <div class="weather-item">
                   <i class="wi wi-strong-wind"></i>
-                  <span class="weather-value">${hour.windspeed} km/h</span>
+                  <span class="weather-value">${hour.windspeed} ${currentUnits === 'metric' ? 'km/h' : 'mph'}</span>
                   <span class="weather-label">Wind Speed</span>
                 </div>
                 <div class="weather-item">
@@ -177,7 +179,7 @@ function updateHourlyWeather(hourlyData) {
                 </div>
                 <div class="weather-item">
                   <i class="wi wi-fog"></i>
-                  <span class="weather-value">${hour.visibility} km</span>
+                  <span class="weather-value">${hour.visibility} ${currentUnits === 'metric' ? 'km' : 'miles'}</span>
                   <span class="weather-label">Visibility</span>
                 </div>
               </div>
@@ -221,7 +223,7 @@ function updateDailyWeather(dailyData) {
               <i class="wi ${getWeatherIconClass(day.icon)}"></i>
             </div>
             <div class="weather-item">
-              <span class="weather-value">${day.temp}°C</span>
+              <span class="weather-value">${day.temp} ${currentUnits === 'metric' ? '°C' : '°F'}</span>
               <span class="weather-label">Avg Temp</span>
             </div>
             
@@ -238,17 +240,18 @@ function updateDailyWeather(dailyData) {
               </div>
               <div class="weather-item">
                 <i class="wi wi-thermometer"></i>
-                <span class="weather-value">${day.highTemp}°C</span>
+                <span class="weather-value">${day.highTemp} ${currentUnits === 'metric' ? '°C' : '°F'}</span>
                 <span class="weather-label">Highest</span>
               </div>
               <div class="weather-item">
                 <i class="wi wi-thermometer-exterior"></i>
-                <span class="weather-value">${day.lowTemp}°C</span>
+                <span class="weather-value">${day.lowTemp} ${currentUnits === 'metric' ? '°C' : '°F'}</span>
                 <span class="weather-label">Lowest</span>
               </div>
               <div class="weather-item">
                 
-                <span class="weather-value">${day.feelsLikeMin}°C - ${day.feelsLikeMax}°C</span>
+                <span class="weather-value">${day.feelsLikeMin} ${currentUnits === 'metric' ? '°C' : '°F'} -</span>
+                <span class="weather-value">${day.feelsLikeMax} ${currentUnits === 'metric' ? '°C' : '°F'}</span>
                 <span class="weather-label">Feels Like</span>
               </div>
               <div class="weather-item">
@@ -306,4 +309,15 @@ function getMoonPhaseDescription(moonphase) {
   if (moonphase < 0.75) return "Waning Gibbous";
   if (moonphase === 0.75) return "Last Quarter";
   return "Waning Crescent";
+}
+
+function getMoonPhaseIcon(moonphase) {
+  if (moonphase === 0) return "wi-moon-new";
+  if (moonphase < 0.25) return `wi-moon-waxing-crescent-${Math.round(moonphase * 24)}`;
+  if (moonphase === 0.25) return "wi-moon-first-quarter";
+  if (moonphase < 0.5) return `wi-moon-waxing-gibbous-${Math.round((moonphase - 0.25) * 24)}`;
+  if (moonphase === 0.5) return "wi-moon-full";
+  if (moonphase < 0.75) return `wi-moon-waning-gibbous-${Math.round((0.75 - moonphase) * 24)}`;
+  if (moonphase === 0.75) return "wi-moon-third-quarter";
+  return `wi-moon-waning-crescent-${Math.round((1 - moonphase) * 24)}`;
 }

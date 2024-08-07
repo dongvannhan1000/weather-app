@@ -14,7 +14,7 @@ class WeatherService {
     }
 
     try {
-      const rawData = await fetchWeatherData(location);
+      const rawData = await fetchWeatherData(location, currentUnits);
       const formattedData = formatWeatherData(rawData);
       
       this.updateCache(location, formattedData);
@@ -49,5 +49,5 @@ class WeatherService {
   // getHourlyForecast(), getDailyForecast(), etc.
 }
 
-let currentUnits = 'metric';
+export let currentUnits = 'metric';
 export const weatherService = new WeatherService();
