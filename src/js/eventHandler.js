@@ -27,14 +27,70 @@ async function handleSearch(event) {
 }
 
 function handleUnitToggle(event) {
-  const isImperial = event.target.checked;
-  const units = isImperial ? 'imperial' : 'metric';
+  const isUS = event.target.checked;
+  const units = isUS ? 'us' : 'metric';
   weatherService.setUnits(units);
   // Refresh the display with new units
-  handleRefresh();
+  if (isUS) {
+    switchToUSUnits();
+  } else {
+    switchToMetricUnits();
+  }
 }
 
 function handleRefresh() {
   const searchInput = document.getElementById('search-input');
   handleSearch({ preventDefault: () => {}, target: searchInput });
+}
+
+function switchToUSUnits() {
+  const elements = document.body.getElementsByTagName('*');
+  
+  for (let element of elements) {
+    if (element.childNodes.length === 1 && element.childNodes[0].nodeType === 3) {
+      let text = element.textContent;
+      
+      // Thay thế °C bằng °F
+      if (text.includes('°C')) {
+        element.textContent = text.replace(/(-?\d+(\.\d+)?)°C/g, (match, celsius) => {
+          const fahrenheit = Math.round((parseFloat(celsius) * 9/5 + 32) * 10) / 10;
+          return `${fahrenheit}°F`;
+        });
+      }
+      
+      // Thay thế km/h bằng mph
+      if (text.includes('km/h')) {
+        element.textContent = text.replace(/(\d+(\.\d+)?)\s*km\/h/g, (match, kmh) => {
+          const mph = Math.round(parseFloat(kmh) / 1.60934 * 10) / 10;
+          return `${mph} mph`;
+        });
+      }
+    }
+  }
+}
+
+function switchToMetricUnits() {
+  const elements = document.body.getElementsByTagName('*');
+  
+  for (let element of elements) {
+    if (element.childNodes.length === 1 && element.childNodes[0].nodeType === 3) {
+      let text = element.textContent;
+      
+      // Thay thế °F bằng °C
+      if (text.includes('°F')) {
+        element.textContent = text.replace(/(-?\d+(\.\d+)?)°F/g, (match, fahrenheit) => {
+          const celsius = Math.round(((parseFloat(fahrenheit) - 32) * 5/9) * 10) / 10;
+          return `${celsius}°C`;
+        });
+      }
+      
+      // Thay thế mph bằng km/h
+      if (text.includes('mph')) {
+        element.textContent = text.replace(/(\d+(\.\d+)?)\s*mph/g, (match, mph) => {
+          const kmh = Math.round(parseFloat(mph) * 1.60934 * 10) / 10;
+          return `${kmh} km/h`;
+        });
+      }
+    }
+  }
 }
