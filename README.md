@@ -21,12 +21,12 @@ SkyScript is a simple weather application that allows users to check weather inf
 
 1. Clone the repository to your local machine:
    ```bash
-   git clone https://github.com/yourusername/taskmaster-pro.git
+   git clone https://github.com/yourusername/weather-app.git
    ```
 
 2. Navigate to the project directory:
    ```bash
-   cd taskmaster-pro
+   cd weather-app
    ```
 
 3. Install the dependencies:
