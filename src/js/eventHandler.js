@@ -10,6 +10,18 @@ export function setupEventListeners() {
 
   const refreshButton = document.getElementById('refresh-button');
   refreshButton.addEventListener('click', handleRefresh);
+
+  loadDefaultWeather();
+}
+
+async function loadDefaultWeather() {
+  try {
+    const defaultLocation = 'Ho Chi Minh'; // Default to Ho Chi Minh City
+    const weatherData = await weatherService.getWeatherData(defaultLocation);
+    updateWeatherDisplay(weatherData);
+  } catch (error) {
+    console.error('Error fetching default weather data:', error);
+  }
 }
 
 async function handleSearch(event) {
